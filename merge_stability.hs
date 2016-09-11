@@ -27,46 +27,46 @@ split s = let len = length s
 mergeSort splitFn [] = []
 mergeSort splitFn [x] = [x]
 mergeSort splitFn xs = let (as,bs) = splitFn xs
-                  in merge (mergeSort splitFn as) (mergeSort splitFn bs)
+                       in merge (mergeSort splitFn as) (mergeSort splitFn bs)
 
 putIntListLn = mapM_ (putStrLn . show)
 
 askForPos :: IO Int
 askForPos = do
-  putStr "Position: "
-  hFlush stdout
-  pos <- getLine
-  return $ read pos
+    putStr "Position: "
+    hFlush stdout
+    pos <- getLine
+    return $ read pos
 
 askForName :: IO String
 askForName = do
-  putStr "Name: "
-  hFlush stdout
-  getLine
+    putStr "Name: "
+    hFlush stdout
+    getLine
 
 stopAdding :: IO Bool
 stopAdding = do
-  putStr "Add another? (y/n): "
-  hFlush stdout
-  resp <- getLine
-  return $ resp == "n"
+    putStr "Add another? (y/n): "
+    hFlush stdout
+    resp <- getLine
+    return $ resp == "n"
 
 getRecords :: [Record] -> IO [Record]
 getRecords recs = do
-  pos <- askForPos
-  name <- askForName
-  let newRec = Record pos name
-  cont <- stopAdding
-  case cont of
-    True -> return $ recs ++ [newRec]
-    False -> getRecords (recs ++ [newRec])
+    pos <- askForPos
+    name <- askForName
+    let newRec = Record pos name
+    cont <- stopAdding
+    case cont of
+        True -> return $ recs ++ [newRec]
+        False -> getRecords (recs ++ [newRec])
 
 
 main = do
-        res <- getRecords []
-        putStrLn "Unsorted:"
-        putIntListLn res
-        putStrLn "\nUnstable:"
-        putIntListLn $ mergeSort usplit res
-        putStrLn "\nStable:"
-        putIntListLn $ mergeSort split res
+    res <- getRecords []
+    putStrLn "Unsorted:"
+    putIntListLn res
+    putStrLn "\nUnstable:"
+    putIntListLn $ mergeSort usplit res
+    putStrLn "\nStable:"
+    putIntListLn $ mergeSort split res
