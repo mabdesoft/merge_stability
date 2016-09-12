@@ -56,8 +56,8 @@ getRecords recs = do
     pos <- askForPos
     name <- askForName
     let newRec = Record pos name
-    cont <- stopAdding
-    case cont of
+    halt <- stopAdding
+    case halt of
         True -> return $ recs ++ [newRec]
         False -> getRecords (recs ++ [newRec])
 
