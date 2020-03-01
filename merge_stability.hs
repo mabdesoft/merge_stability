@@ -1,6 +1,9 @@
 {- Merge-sort algorithm from Rosetta Code
     but with a different approach to splitting
-    that results in a stable sort -}
+    that results in a stable sort.
+    Since the original algorithm is covered by
+    the GNU FDL v1.2, so is this. See fdl-1.2.txt.
+ -}
 
 import Control.Monad
 import System.IO
